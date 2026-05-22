@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're In — LeadLocked</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Meta Pixel Base Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '986829403740740');
+    fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=986829403740740&ev=PageView&noscript=1"/>
+  </noscript>
+
+  <style>
+    :root {
+      --orange: #FF6B1A;
+      --orange-dark: #e05a0f;
+      --bg: #0d0d0d;
+      --surface: #141414;
+      --surface2: #1c1c1c;
+      --text: #ffffff;
+      --muted: #888888;
+      --border: rgba(255,255,255,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    /* Background texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% -10%, rgba(255,107,26,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 80%, rgba(255,107,26,0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Animated grid lines */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,107,26,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,107,26,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 2rem 4rem;
+      max-width: 580px;
+      width: 100%;
+      animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Logo */
+    .logo {
+      font-family: 'Anton', sans-serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 3rem;
+      text-decoration: none;
+      display: inline-block;
+      color: #ffffff;
+      animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .logo span { color: var(--orange); }
+
+    /* Check icon */
+    .check-wrap {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 2rem;
+      border-radius: 50%;
+      background: rgba(255,107,26,0.12);
+      border: 1.5px solid rgba(255,107,26,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: popIn 0.6s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.5); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .check-wrap svg {
+      width: 36px;
+      height: 36px;
+      stroke: var(--orange);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: drawCheck 0.5s 0.5s ease forwards;
+    }
+
+    @keyframes drawCheck {
+      to { stroke-dashoffset: 0; }
+    }
+
+    h1 {
+      font-family: 'Anton', sans-serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 10vw, 4.5rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.6s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    /* Steps */
+    .steps {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      text-align: left;
+      animation: fadeUp 0.6s 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .steps-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1rem;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; padding-bottom: 0; }
+    .step:first-of-type { padding-top: 0; }
+
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255,107,26,0.15);
+      border: 1px solid rgba(255,107,26,0.4);
+      color: var(--orange);
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-text strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+    .step-text span {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* CTA */
+    .cta-note {
+      font-size: 0.88rem;
+      color: var(--muted);
+      animation: fadeUp 0.6s 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .cta-note a {
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .cta-note a:hover { text-decoration: underline; }
+
+    /* Pulse dot */
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #4ade80;
+      background: rgba(74,222,128,0.08);
+      border: 1px solid rgba(74,222,128,0.2);
+      border-radius: 100px;
+      padding: 0.3rem 0.75rem;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.5s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="https://leadlocked.ai" class="logo">LEAD<span>LOCKED</span></a>
+
+    <div class="check-wrap">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+
+    <div class="live-badge">
+      <span class="pulse"></span>
+      Trial Active
+    </div>
+
+    <h1>Your system<br>is <em>live.</em></h1>
+
+    <p class="subtitle">Check your inbox — we sent you a setup link.<br>Most contractors are ready within 2 hours.</p>
+
+    <div class="steps">
+      <div class="steps-label">What happens next</div>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Check your email</strong>
+          <span>You'll find a welcome email from LeadLocked with your custom setup form link.</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Start capturing leads</strong>
+          <span>Point your website or ads to your new lead form. We handle everything from there.</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="cta-note">Questions? Email us at <a href="mailto:support@leadlocked.ai">support@leadlocked.ai</a></p>
+  </div>
+
+  <!-- Meta Pixel Lead Event — fires on this confirmation page only -->
+  <script>
+    fbq('track', 'Lead');
+  </script>
+
+</body>
+</html>
