@@ -374,7 +374,7 @@ Keep answers short — 2-4 sentences max unless more detail is needed. If someon
     const typing = showTyping();
 
     try {
-      const res = await fetch('/.netlify/functions/chat', {
+      const res = await fetch('https://leadlocked.j2z86nrwgd.workers.dev', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages })
